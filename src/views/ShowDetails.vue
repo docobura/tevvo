@@ -1,18 +1,17 @@
 <script setup>
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
 const route = useRoute();
+const router = useRouter();
 const show = ref(null);
 const loading = ref(false);
 
 onMounted(async () => {
   loading.value = true;
   try {
-    const response = await axios.get(
-      `https://api.tvmaze.com/shows/${route.params.id}`
-    );
+    const response = await axios.get(`https://api.tvmaze.com/shows/${route.params.id}`);
     show.value = response.data;
   } catch (error) {
     console.error("Failed to fetch show details:", error);
@@ -20,39 +19,63 @@ onMounted(async () => {
     loading.value = false;
   }
 });
+
+const goBack = () => router.push('/');
 </script>
 
 <template>
-  <div class="details">
-    <router-link to="/" class="back-link">← Back to Shows</router-link>
-    
-    <div v-if="loading">Loading show details...</div>
-    <div v-else-if="show" class="show-content">
-      <div class="show-header">
-        <h1>{{ show.name }}</h1>
-        <div class="metadata">
-          <span>⭐ {{ show.rating?.average || 'N/A' }}</span>
-          <span>⏱️ {{ show.runtime }} mins</span>
-          <span>📺 {{ show.language }}</span>
+  <div class="bg-dark text-light min-vh-100">
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark bg-primary px-4 shadow d-flex justify-content-between">
+      <button class="btn btn-outline-light" @click="goBack">
+        ← Back to Shows
+      </button>
+      <span class="navbar-brand mb-0 h1">Show Details</span>
+    </nav>
+
+    <!-- Content -->
+    <div class="container py-5">
+      <div class="row bg-white text-dark rounded-4 shadow overflow-hidden">
+        <!-- Left: Image -->
+        <div class="col-md-6 p-0 bg-light d-flex align-items-center justify-content-center">
+          <img
+            v-if="show?.image?.original"
+            :src="show.image.original"
+            :alt="show.name"
+            class="img-fluid w-100 h-100 object-fit-cover"
+          />
         </div>
-      </div>
 
-      <div class="show-body">
-        <img 
-          v-if="show.image?.original" 
-          :src="show.image.original" 
-          :alt="show.name"
-          class="featured-image"
-        >
-        <div v-html="show.summary"></div>
-      </div>
+        <!-- Right: Details -->
+        <div class="col-md-6 p-5 d-flex flex-column justify-content-center">
+          <div v-if="loading" class="text-center">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
 
-      <div v-if="show.genres?.length" class="genres">
-        <h3>Genres</h3>
-        <div class="genre-tags">
-          <span v-for="genre in show.genres" :key="genre" class="tag">
-            {{ genre }}
-          </span>
+          <div v-else-if="show">
+            <h2 class="fw-bold mb-3">{{ show.name }}</h2>
+            <div class="mb-3 text-muted small d-flex flex-wrap gap-3">
+              <div>⭐ {{ show.rating?.average || 'N/A' }}</div>
+              <div>⏱️ {{ show.runtime }} mins</div>
+              <div>📺 {{ show.language }}</div>
+            </div>
+            <div class="mb-3" v-html="show.summary"></div>
+
+            <div v-if="show.genres?.length">
+              <h5 class="fw-semibold">Genres</h5>
+              <div class="d-flex flex-wrap gap-2 mt-2">
+                <span
+                  v-for="genre in show.genres"
+                  :key="genre"
+                  class="badge bg-primary-subtle text-primary-emphasis px-3 py-2 rounded-pill"
+                >
+                  {{ genre }}
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -60,49 +83,20 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-.details {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
+.object-fit-cover {
+  object-fit: cover;
+  height: 100%;
 }
 
-.back-link {
-  display: inline-block;
-  margin-bottom: 1rem;
-  color: #42b983;
+.bg-dark {
+  background-color: #0b1c2c !important;
 }
 
-.show-header {
-  margin-bottom: 2rem;
+.bg-primary-subtle {
+  background-color: #ebf5fb;
 }
 
-.metadata {
-  display: flex;
-  gap: 1rem;
-  margin-top: 0.5rem;
-  color: #666;
-}
-
-.featured-image {
-  max-width: 100%;
-  margin-bottom: 2rem;
-  border-radius: 8px;
-}
-
-.genres {
-  margin-top: 2rem;
-}
-
-.genre-tags {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.tag {
-  background: #eee;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  font-size: 0.9rem;
+.text-primary-emphasis {
+  color: #2c3e50;
 }
 </style>

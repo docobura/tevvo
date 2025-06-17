@@ -1,109 +1,112 @@
-  <script setup>
-  import { useShowsStore } from '@/stores/shows';
-  import { useAuthStore } from '@/stores/auth';
-  import { onMounted } from 'vue';
-  import ShowGrid from '@/components/ShowGrid.vue';
-  import 'bootstrap/dist/css/bootstrap.min.css';
-  import 'bootstrap';
+<script setup>
+import { useShowsStore } from '@/stores/shows';
+import { useAuthStore } from '@/stores/auth';
+import { onMounted } from 'vue';
+import ShowGrid from '@/components/ShowGrid.vue';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap';
 
-  const showsStore = useShowsStore();
-  const { logout } = useAuthStore();
+const showsStore = useShowsStore();
+const { logout } = useAuthStore();
 
-  onMounted(() => showsStore.fetchShows());
-  </script>
+onMounted(() => showsStore.fetchShows());
+</script>
 
-  <template>
-    <div class="home container-fluid bg-light min-vh-100">
-      <header class="bg-primary text-white p-3 shadow-sm">
-        <div class="container d-flex justify-content-between align-items-center">
-          <h1 class="mb-0">TV Shows</h1>
-          <button 
-            @click="logout" 
-            class="btn btn-outline-light"
-          >
-            <i class="bi bi-box-arrow-right"></i> Logout
-          </button>
-        </div>
-      </header>
+<template>
+  <div class="home min-vh-100 d-flex flex-column">
+    
+    <!-- Header (light background only here) -->
+    <header class="bg-primary text-white py-3 shadow-sm">
+      <div class="container d-flex justify-content-between align-items-center">
+        <h1 class="h4 mb-0 fw-bold">📺 TV Shows</h1>
+        <button @click="logout" class="btn btn-outline-light d-flex align-items-center gap-2">
+          <i class="bi bi-box-arrow-right"></i> Logout
+        </button>
+      </div>
+    </header>
 
-      <main class="container py-4">
-        <div class="controls mb-4 row g-3 align-items-center">
+    <!-- Content Area with dark background -->
+    <div class="bg-dark-blue text-white flex-grow-1 py-4">
+      <div class="container">
+        <!-- Controls -->
+        <div class="row gy-3 align-items-center mb-4">
           <div class="col-md-8">
-            <div class="input-group">
-              <span class="input-group-text bg-white">
+            <div class="input-group input-group-lg">
+              <span class="input-group-text bg-white border-primary">
                 <i class="bi bi-search text-primary"></i>
               </span>
               <input
                 v-model="showsStore.searchQuery"
+                type="text"
+                class="form-control border-primary"
                 placeholder="Search shows..."
-                class="form-control form-control-lg border-primary"
-              >
+              />
             </div>
           </div>
           <div class="col-md-4">
-            <button 
+            <button
               @click="showsStore.toggleViewMode"
-              class="btn btn-outline-primary btn-lg w-100"
+              class="btn btn-outline-primary btn-lg w-100 d-flex align-items-center justify-content-center gap-2"
             >
-              <i class="bi" :class="showsStore.viewMode === 'grid' ? 'bi-list-ul' : 'bi-grid'"></i>
+              <i :class="['bi', showsStore.viewMode === 'grid' ? 'bi-list-ul' : 'bi-grid']"></i>
               {{ showsStore.viewMode === 'grid' ? 'List View' : 'Grid View' }}
             </button>
           </div>
         </div>
 
+        <!-- Loading Spinner -->
         <div v-if="showsStore.loading" class="text-center py-5">
-          <div class="spinner-border text-primary" role="status">
+          <div class="spinner-border text-light" role="status">
             <span class="visually-hidden">Loading...</span>
           </div>
-          <p class="mt-2 text-muted">Loading shows...</p>
+          <p class="mt-3 text-light">Loading shows...</p>
         </div>
-        
-        <ShowGrid 
-          v-else 
-          :shows="showsStore.filteredShows" 
-          :mode="showsStore.viewMode" 
-        />
-      </main>
+
+        <!-- Show Grid -->
+        <div v-else>
+          <ShowGrid
+            :shows="showsStore.filteredShows"
+            :mode="showsStore.viewMode"
+          />
+        </div>
+      </div>
     </div>
-  </template>
+  </div>
+</template>
 
-  <style scoped>
-  /* Custom blue theme */
-  :root {
-    --bs-primary: #3498db;
-    --bs-primary-light: #ebf5fb;
-  }
+<style scoped>
+:root {
+  --bs-primary: #3498db;
+}
 
-  .home {
-    color: #2c3e50;
-  }
+/* Entire content background (not the header) */
+.bg-dark-blue {
+  background-color: #001f3f;
+}
 
-  .bg-primary {
-    background-color: var(--bs-primary) !important;
-  }
+/* Style cards within ShowGrid if not already styled */
+.bg-dark-blue .card {
+  background-color: #002b5b;
+  border: none;
+}
+.bg-dark-blue .card-title,
+.bg-dark-blue .card-text {
+  color: #ffffff;
+}
 
-  .btn-outline-primary {
-    --bs-btn-color: var(--bs-primary);
-    --bs-btn-border-color: var(--bs-primary);
-    --bs-btn-hover-bg: var(--bs-primary);
-    --bs-btn-hover-border-color: var(--bs-primary);
-  }
+.form-control:focus {
+  box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
+  border-color: var(--bs-primary);
+}
 
-  /* Eye-friendly adjustments */
-  body {
-    line-height: 1.6;
-    color: #34495e;
-  }
+.btn-outline-primary:hover {
+  background-color: var(--bs-primary);
+  color: #fff;
+  border-color: var(--bs-primary);
+}
 
-  .form-control:focus {
-    border-color: var(--bs-primary);
-    box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
-  }
-
-  /* Responsive tweaks */
-  @media (max-width: 768px) {
-    .controls .col-md-4 {
-      margin-top: 1rem;
-    }
-  }
-  </style>
+/* Optional: ensure full height on smaller screens */
+html, body {
+  height: 100%;
+}
+</style>
