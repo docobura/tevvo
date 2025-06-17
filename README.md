@@ -1,5 +1,9 @@
 ## 🚀 Project Setup
 
+## live links 
+
+https://tevvo-dt4h.vercel.app/
+
 ### Install dependencies
 ```bash
 npm install
@@ -10,7 +14,9 @@ npm run serve
 ## 🔐 Auth Implementation
 
 - Uses a **mock login** system via Pinia store.
-- Credentials: `admin / 123`
+- Credentials: 
+  username- `admin 
+' password -' ' 123`
 - Stores a mock token in `localStorage`.
 - Implements **auto-logout after 30 minutes of inactivity**.
 - Resets the timeout on mouse movement, scroll, or keypress.
