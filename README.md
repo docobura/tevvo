@@ -6,6 +6,7 @@ https://tevvo-dt4h.vercel.app/
 
 ### Install dependencies
 ```bash
+cd tevvo 
 npm install
 ## Start development server
 npm run serve

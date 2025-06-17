@@ -27,7 +27,7 @@ const handleLogin = async () => {
       <div class="col-md-6 p-5 d-flex flex-column justify-content-center">
         <h2 class="fw-bold">Welcome back!</h2>
         <p class="text-muted small mb-4">
-          Simplify your search for good shows by going through our page and the ratings 
+          Simplify your search for good shows by going through our page and the ratings and more 
         </p>
 
         <form @submit.prevent="handleLogin">
