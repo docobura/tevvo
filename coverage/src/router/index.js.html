@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for my-vue-app/src/stores/shows.js</title>
+    <title>Code coverage report for src/router/index.js</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../../prettify.css" />
-    <link rel="stylesheet" href="../../../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.png" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../../../sort-arrow-sprite.png);
+            background-image: url(../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">my-vue-app/src/stores</a> shows.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/router</a> index.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/37</span>
+                <span class='fraction'>0/32</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/37</span>
+                <span class='fraction'>0/32</span>
             </div>
         
             
@@ -98,13 +98,7 @@
 <a name='L33'></a><a href='#L33'>33</a>
 <a name='L34'></a><a href='#L34'>34</a>
 <a name='L35'></a><a href='#L35'>35</a>
-<a name='L36'></a><a href='#L36'>36</a>
-<a name='L37'></a><a href='#L37'>37</a>
-<a name='L38'></a><a href='#L38'>38</a>
-<a name='L39'></a><a href='#L39'>39</a>
-<a name='L40'></a><a href='#L40'>40</a>
-<a name='L41'></a><a href='#L41'>41</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<a name='L36'></a><a href='#L36'>36</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -112,13 +106,9 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -141,65 +131,60 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import { defineStore } from 'pinia';<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
-<span class="cstat-no" title="statement not covered" >import { ref, computed } from 'vue';</span>
-<span class="cstat-no" title="statement not covered" >import axios from 'axios';</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import { createRouter, createWebHistory } from 'vue-router';<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
+<span class="cstat-no" title="statement not covered" >import { useAuthStore } from '../stores/auth';</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export const useShowsStore = defineStore('shows', () =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  const shows = ref([]);</span>
-<span class="cstat-no" title="statement not covered" >  const loading = ref(false);</span>
-<span class="cstat-no" title="statement not covered" >  const searchQuery = ref('');</span>
-<span class="cstat-no" title="statement not covered" >  const viewMode = ref('grid'); // 'grid' or 'list'</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >  const filteredShows = computed(() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    return shows.value.filter(show =&gt; </span>
-<span class="cstat-no" title="statement not covered" >      show.name.toLowerCase().includes(searchQuery.value.toLowerCase())</span>
-<span class="cstat-no" title="statement not covered" >    );</span>
-<span class="cstat-no" title="statement not covered" >  });</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >  const fetchShows = async () =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    loading.value = true;</span>
-<span class="cstat-no" title="statement not covered" >    try {</span>
-<span class="cstat-no" title="statement not covered" >      const requests = Array.from({ length: 13 }, (_, i) =&gt; </span>
-<span class="cstat-no" title="statement not covered" >        axios.get(`https://api.tvmaze.com/shows/${i + 1}`)</span>
-<span class="cstat-no" title="statement not covered" >      );</span>
-<span class="cstat-no" title="statement not covered" >      const responses = await Promise.all(requests);</span>
-<span class="cstat-no" title="statement not covered" >      shows.value = responses.map(res =&gt; res.data);</span>
-<span class="cstat-no" title="statement not covered" >    } catch (error) {</span>
-<span class="cstat-no" title="statement not covered" >      console.error("Failed to fetch shows:", error);</span>
-<span class="cstat-no" title="statement not covered" >    } finally {</span>
-<span class="cstat-no" title="statement not covered" >      loading.value = false;</span>
+<span class="cstat-no" title="statement not covered" >const router = createRouter({</span>
+<span class="cstat-no" title="statement not covered" >  history: createWebHistory(),</span>
+<span class="cstat-no" title="statement not covered" >  routes: [</span>
+<span class="cstat-no" title="statement not covered" >    {</span>
+<span class="cstat-no" title="statement not covered" >      path: '/',</span>
+<span class="cstat-no" title="statement not covered" >      name: 'home',</span>
+<span class="cstat-no" title="statement not covered" >      component: () =&gt; import('@/views/HomePage.vue'),</span>
+<span class="cstat-no" title="statement not covered" >      meta: { requiresAuth: true }</span>
+<span class="cstat-no" title="statement not covered" >    },</span>
+<span class="cstat-no" title="statement not covered" >    {</span>
+<span class="cstat-no" title="statement not covered" >      path: '/show/:id',</span>
+<span class="cstat-no" title="statement not covered" >      name: 'show',</span>
+<span class="cstat-no" title="statement not covered" >      component: () =&gt; import('@/views/ShowDetails.vue'),</span>
+<span class="cstat-no" title="statement not covered" >      meta: { requiresAuth: true }</span>
+<span class="cstat-no" title="statement not covered" >    },</span>
+<span class="cstat-no" title="statement not covered" >    {</span>
+<span class="cstat-no" title="statement not covered" >      path: '/login',</span>
+<span class="cstat-no" title="statement not covered" >      name: 'login',</span>
+<span class="cstat-no" title="statement not covered" >      component: () =&gt; import('@/views/LoginPage.vue')</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" >  };</span>
+<span class="cstat-no" title="statement not covered" >  ]</span>
+<span class="cstat-no" title="statement not covered" >});</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return { </span>
-<span class="cstat-no" title="statement not covered" >    shows, </span>
-<span class="cstat-no" title="statement not covered" >    loading, </span>
-<span class="cstat-no" title="statement not covered" >    fetchShows, </span>
-<span class="cstat-no" title="statement not covered" >    searchQuery, </span>
-<span class="cstat-no" title="statement not covered" >    filteredShows,</span>
-<span class="cstat-no" title="statement not covered" >    viewMode,</span>
-<span class="cstat-no" title="statement not covered" >    toggleViewMode: () =&gt; viewMode.value = viewMode.value === 'grid' ? 'list' : 'grid'</span>
-<span class="cstat-no" title="statement not covered" >  };</span>
-<span class="cstat-no" title="statement not covered" >}); </span></pre></td></tr></table></pre>
+<span class="cstat-no" title="statement not covered" >// Navigation guard</span>
+<span class="cstat-no" title="statement not covered" >router.beforeEach((to) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  const auth = useAuthStore();</span>
+<span class="cstat-no" title="statement not covered" >  if (to.meta.requiresAuth &amp;&amp; !auth.token) {</span>
+<span class="cstat-no" title="statement not covered" >    return '/login';</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" >});</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >export default router;</span>
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-06-17T10:15:50.382Z
+                at 2025-06-17T10:57:03.061Z
             </div>
-        <script src="../../../prettify.js"></script>
+        <script src="../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../../../sorter.js"></script>
-        <script src="../../../block-navigation.js"></script>
+        <script src="../../sorter.js"></script>
+        <script src="../../block-navigation.js"></script>
     </body>
 </html>
     

@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for my-vue-app/vue.config.js</title>
+    <title>Code coverage report for src/main.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">my-vue-app</a> vue.config.js</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">src</a> main.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/14</span>
+                <span class='fraction'>0/11</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/14</span>
+                <span class='fraction'>0/11</span>
             </div>
         
             
@@ -76,43 +76,40 @@
 <a name='L11'></a><a href='#L11'>11</a>
 <a name='L12'></a><a href='#L12'>12</a>
 <a name='L13'></a><a href='#L13'>13</a>
-<a name='L14'></a><a href='#L14'>14</a>
-<a name='L15'></a><a href='#L15'>15</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L14'></a><a href='#L14'>14</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import { defineConfig } from 'vitest/config';<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
-<span class="cstat-no" title="statement not covered" >import vue from '@vitejs/plugin-vue';</span>
-<span class="cstat-no" title="statement not covered" >import path from 'path';</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import { createApp } from 'vue';</span></span></span>
+<span class="cstat-no" title="statement not covered" >import { createPinia } from 'pinia';</span>
+<span class="cstat-no" title="statement not covered" >import App from './App.vue';</span>
+<span class="cstat-no" title="statement not covered" >import router from './router';</span>
+<span class="cstat-no" title="statement not covered" >import 'bootstrap/dist/css/bootstrap.min.css';</span>
+<span class="cstat-no" title="statement not covered" >import 'bootstrap';</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export default defineConfig({</span>
-<span class="cstat-no" title="statement not covered" >  plugins: [vue()],</span>
-<span class="cstat-no" title="statement not covered" >  test: {</span>
-<span class="cstat-no" title="statement not covered" >    globals: true,</span>
-<span class="cstat-no" title="statement not covered" >    environment: 'happy-dom',</span>
-<span class="cstat-no" title="statement not covered" >    alias: {</span>
-<span class="cstat-no" title="statement not covered" >      '@': path.resolve(__dirname, './src'),</span>
-<span class="cstat-no" title="statement not covered" >      '@router': path.resolve(__dirname, './src/router') // Add this</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" >});</span></pre></td></tr></table></pre>
+<span class="cstat-no" title="statement not covered" >const app = createApp(App);</span>
+<span class="cstat-no" title="statement not covered" >const pinia = createPinia();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >app.use(pinia);</span>
+<span class="cstat-no" title="statement not covered" >app.use(router);</span>
+<span class="cstat-no" title="statement not covered" >app.mount('#app');</span>
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-06-17T10:15:50.382Z
+                at 2025-06-17T10:57:03.061Z
             </div>
         <script src="../prettify.js"></script>
         <script>

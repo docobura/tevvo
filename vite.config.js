@@ -9,7 +9,7 @@ export default defineConfig({
     environment: 'happy-dom',
     alias: {
       '@': path.resolve(__dirname, './src'),
-      '@router': path.resolve(__dirname, './src/router') // Add this
+      '@router': path.resolve(__dirname, './src/router')
     }
   }
 });
